@@ -11,8 +11,20 @@ words = [
 "lista",
 ]
 
+categorias ={"conceptos de programacion" : ["variable","funcion","bucle"],
+              "tipos de datos" : ["entero","cadena","lista"], "lenguaje" : ["python","programa"]}
 
-word = random.choice(words)
+print("elije una de estas categorias:","  conceptos de programacion;"," tipos de datos;",
+            " lenguajes;")
+cat = input("ingrese el nombre de la categoria: ")
+while cat not in categorias :
+    print (" la categoria seleccionada no pertenece a una existente, elija denuevo")
+    cat = input("ingrese el nombre de la categoria: ")
+dato = categorias [cat]
+
+print(cat)
+
+word = random.choice(categorias[cat])
 guessed = []
 attempts = 6
 print("¡Bienvenido al Ahorcado!")
