@@ -85,6 +85,7 @@ while jugar_denuevo == True :
         puntaje = 0
     nueva_partida =input("queres jugar denuevo?, responda con SI, o con NO")
     if nueva_partida =="NO":
+        print(nueva_partida)
         jugar_denuevo ==False
         break
 
