@@ -79,18 +79,22 @@ rounds = [
 
 
 puntajes_acumulados ={'Valentina':0, 'Mateo':0, 'Camila':0,'Santiago':0,'Lucía':0}
+
 puntaje_ronda ={'Valentina':0, 'Mateo':0, 'Camila':0,'Santiago':0,'Lucía':0}
+
 rondas_ganadas ={'Valentina':0, 'Mateo':0, 'Camila':0,'Santiago':0,'Lucía':0}
-tabla_final ={'Valentina':{'puntos' :0,'rondas_ganadas':0,'mejor ronda':-1,'promedio':0}, 
-              'Mateo':{'puntos' :0,'rondas_ganadas':0,'mejor ronda':-1,'promedio':0},
-              'Camila':{'puntos' :0,'rondas_ganadas':0,'mejor ronda':-1,'promedio':0},
-              'Santiago':{'puntos' :0,'rondas_ganadas':0,'mejor ronda':-1,'promedio':0},
-              'Lucía':{'puntos' :0,'rondas_ganadas':0,'mejor ronda':-1,'promedio':0}}
+
+tabla_final ={'Valentina':{'puntos' :0,'rondas_ganadas':0,'maximo de puntaje obtenido':-1,'promedio':0}, 
+              'Mateo':{'puntos' :0,'rondas_ganadas':0,'maximo de puntaje obtenido':-1,'promedio':0},
+              'Camila':{'puntos' :0,'rondas_ganadas':0,'maximo de puntaje obtenido':-1,'promedio':0},
+              'Santiago':{'puntos' :0,'rondas_ganadas':0,'maximo de puntaje obtenido':-1,'promedio':0},
+              'Lucía':{'puntos' :0,'rondas_ganadas':0,'maximo de puntaje obtenido':-1,'promedio':0}}
 
 ronda =1
 for rondas in rounds :
     print('ronda numero',ronda)
     ronda +=1
+    ##p=a cumulando puntajes
     for nombre, puntaje in rondas['scores'].items():
         sumatoria = sum(puntaje.values())
         puntajes_acumulados[nombre]+=sumatoria
@@ -99,8 +103,8 @@ for rondas in rounds :
 
         puntaje_ronda[nombre] = sumatoria
 
-        if sumatoria > tabla_final[nombre]["mejor ronda"]:
-            tabla_final[nombre]["mejor ronda"] =sumatoria
+        if sumatoria > tabla_final[nombre]['maximo de puntaje obtenido']:
+            tabla_final[nombre]['maximo de puntaje obtenido'] =sumatoria
         
     max_puntaje = max(puntaje_ronda.values())
     
@@ -124,7 +128,7 @@ for nombre in tabla_final:
     print(f"{nombre}")
     print(f"-- Puntos totales : {tabla_final[nombre]['puntos']}")
     print(f"-- Rondas ganadas: {tabla_final[nombre]['rondas_ganadas']}")
-    print(f"-- Mejor ronda   : {tabla_final[nombre]['mejor ronda']}")
+    print(f"-- Mejor ronda   : {tabla_final[nombre]['maximo de puntaje obtenido']}")
     print(f"-- Promedio      : {tabla_final[nombre]['promedio']:.2f}")
     print("--" * 35)
 
