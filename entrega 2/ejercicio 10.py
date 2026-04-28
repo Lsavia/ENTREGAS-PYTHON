@@ -80,10 +80,6 @@ rounds = [
 
 puntajes_acumulados ={'Valentina':0, 'Mateo':0, 'Camila':0,'Santiago':0,'Lucía':0}
 
-puntaje_ronda ={'Valentina':0, 'Mateo':0, 'Camila':0,'Santiago':0,'Lucía':0}
-
-rondas_ganadas ={'Valentina':0, 'Mateo':0, 'Camila':0,'Santiago':0,'Lucía':0}
-
 tabla_final ={'Valentina':{'puntos' :0,'rondas_ganadas':0,'maximo de puntaje obtenido':-1,'promedio':0}, 
               'Mateo':{'puntos' :0,'rondas_ganadas':0,'maximo de puntaje obtenido':-1,'promedio':0},
               'Camila':{'puntos' :0,'rondas_ganadas':0,'maximo de puntaje obtenido':-1,'promedio':0},
@@ -92,34 +88,36 @@ tabla_final ={'Valentina':{'puntos' :0,'rondas_ganadas':0,'maximo de puntaje obt
 
 ronda =1
 for rondas in rounds :
+    resultados_ronda = []
     print('ronda numero',ronda)
     ronda +=1
-    ##p=a cumulando puntajes
+    
     for nombre, puntaje in rondas['scores'].items():
+
         sumatoria = sum(puntaje.values())
+        
+
         puntajes_acumulados[nombre]+=sumatoria
 
         tabla_final[nombre]["puntos"]+=sumatoria
 
-        puntaje_ronda[nombre] = sumatoria
+        resultados_ronda.append((nombre, sumatoria, puntajes_acumulados[nombre]))
+        
 
         if sumatoria > tabla_final[nombre]['maximo de puntaje obtenido']:
             tabla_final[nombre]['maximo de puntaje obtenido'] =sumatoria
         
-    max_puntaje = max(puntaje_ronda.values())
+    ganador = max(resultados_ronda, key=lambda x: x[1])
     
-    ranking = sorted(puntajes_acumulados.items(), key = lambda x: x[1], reverse =True)
-    posicion =1
-    
-    
+    tabla_final[ganador[0]]["rondas_ganadas"] += 1
 
-    for nombre, puntaje in puntaje_ronda.items() :
-        if puntaje ==max_puntaje :
-            rondas_ganadas[nombre]+=1
-            tabla_final[nombre]["rondas_ganadas"]+=1
+    print("Ganador de la ronda:", ganador[0])
 
-        print(f"{posicion} - {nombre} - {puntaje}")
-        posicion +=1
+    
+    ranking = sorted(resultados_ronda, key=lambda x: x[2], reverse=True)
+    
+    for pos, (nombre, ronda_pts, total_pts) in enumerate(ranking, start=1):
+        print(f"{pos} - {nombre} - Ronda : {ronda_pts} - Total: {total_pts}")
 
 for nombre in tabla_final :
      tabla_final[nombre]["promedio"] = tabla_final[nombre]["puntos"]/len(rounds)

@@ -31,12 +31,10 @@ lineas = len(lineas_list)
 
 ##La cantidad total de palabras.
 palabras =0
-palabras = text.split()
+palabras_list = text.split()
 
-print(len(palabras))
-palabras = len(palabras)
-
-
+print(len(palabras_list))
+palabras = len(palabras_list)
 ##El promedio de palabras por línea.
 promedio = palabras / lineas
 print(promedio)
